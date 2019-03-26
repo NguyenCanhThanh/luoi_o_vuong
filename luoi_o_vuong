@@ -1,0 +1,63 @@
+#include<ros/ros.h>
+#include<geometry_msgs/Twist.h>
+#include<turtlesim/Pose.h>
+
+#include<iostream>
+#include<queue>
+#include<iomanip>
+using namespace std;
+
+
+ros::Publisher pub3, pub2, pub4, pub5, pub6, pub7, pub8,
+               pub9, pub10, pub11, pub12, pub13;
+float target_angle, target_distance; 
+const float PI = 3.14159265;
+float rate = 30;
+
+geometry_msgs::Twist getMessage( double linear_x, double angular_z)
+{
+    geometry_msgs::Twist msg;
+    msg.linear.x = linear_x;
+    msg.angular.z = angular_z;
+    return msg;
+}
+
+int main(int argc, char** argv)
+{
+    ros::init (argc, argv, "myturtle_control");
+    ros::NodeHandle h;
+    pub2 = h.advertise<geometry_msgs::Twist>("turtle2/cmd_vel",1000);
+    pub3 = h.advertise<geometry_msgs::Twist>("turtle3/cmd_vel",1000);
+    pub4 = h.advertise<geometry_msgs::Twist>("turtle4/cmd_vel",1000);
+    pub5 = h.advertise<geometry_msgs::Twist>("turtle5/cmd_vel",1000);
+    pub6 = h.advertise<geometry_msgs::Twist>("turtle6/cmd_vel",1000);
+    pub7 = h.advertise<geometry_msgs::Twist>("turtle7/cmd_vel",1000);
+    pub8 = h.advertise<geometry_msgs::Twist>("turtle8/cmd_vel",1000);
+    pub9 = h.advertise<geometry_msgs::Twist>("turtle9/cmd_vel",1000);
+    pub10 = h.advertise<geometry_msgs::Twist>("turtle10/cmd_vel",1000);
+    pub11 = h.advertise<geometry_msgs::Twist>("turtle11/cmd_vel",1000);
+    pub12 = h.advertise<geometry_msgs::Twist>("turtle12/cmd_vel",1000);
+    pub13 = h.advertise<geometry_msgs::Twist>("turtle13/cmd_vel",1000);
+ 
+    ros::Rate loopRate(rate);
+
+    
+    while(ros::ok()){
+        
+        pub2.publish(getMessage(1.0,0.0));
+        pub3.publish(getMessage(1.0,0.0));
+        pub4.publish(getMessage(1.0,0.0));
+        pub5.publish(getMessage(1.0,0.0));
+        pub6.publish(getMessage(1.0,0.0));
+        pub7.publish(getMessage(1.0,0.0));
+        pub8.publish(getMessage(1.0,0.0));
+        pub9.publish(getMessage(1.0,0.0));
+        pub10.publish(getMessage(1.0,0.0));
+        pub11.publish(getMessage(1.0,0.0));
+        pub12.publish(getMessage(1.0,0.0));
+        pub13.publish(getMessage(1.0,0.0));
+        loopRate.sleep();
+        ros::spinOnce();
+    }
+    return 0;
+}
